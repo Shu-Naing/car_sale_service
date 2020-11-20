@@ -14,6 +14,14 @@ def about():
 def faq():
     return render_template("faq.html")
 
+@app.route('/blog', methods=['GET'])
+def blog():
+    return render_template("blog-details.html")
+
+@app.route('/terms', methods=['GET'])
+def terms():
+    return render_template("terms.html")
+
 @app.route('/contact', methods=['GET'])
 def contact():
     return render_template("contact.html")

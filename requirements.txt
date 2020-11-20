@@ -1,2 +1,1 @@
-flask
-mysql-python
+Flask==1.1.1
