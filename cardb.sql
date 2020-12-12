@@ -74,7 +74,7 @@ DROP TABLE IF EXISTS `car`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `car` (
-  `car_id` varchar(10) NOT NULL,
+  `car_id` int NOT NULL AUTO_INCREMENT,
   `model` varchar(100) DEFAULT NULL,
   `color` varchar(100) DEFAULT NULL,
   `price` int DEFAULT NULL,
@@ -129,14 +129,15 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
-  `emp_id` varchar(10) NOT NULL,
+  `emp_id` int NOT NULL AUTO_INCREMENT,
   `emp_role` varchar(50) DEFAULT NULL,
   `demp` varchar(50) DEFAULT NULL,
   `emp_name` varchar(30) DEFAULT NULL,
   `emp_address` varchar(100) DEFAULT NULL,
   `emp_phone` varchar(20) DEFAULT NULL,
+  `emp_pass` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`emp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +146,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('1','admin','sales','mg mg','yangon','09250300200');
+INSERT INTO `employee` VALUES (1,'admin','sales','mg mg','yangon','09250300200','admin'),(2,'admin','sales','hla','ygn','098765','123'),(3,'admin','sales','hla','ygn','098765','123'),(4,'admin','sales','mg mg','ygn','098765','admin');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-28  0:39:52
+-- Dump completed on 2020-12-12 11:40:10
