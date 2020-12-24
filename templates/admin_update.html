@@ -2,52 +2,47 @@
 {% block content %}
 <section class="section" id="our-classes">
 	<div class="container">
-    <h3>Update your Car</h3>
-		<div class="form-group">
-			<!-- <label for="email">Role:</label> -->
-			<input  type="text" class="form-control" id="role" name="role" placeholder="Model">
-		  </div>
-
-		  <div class="form-group">
-			  <!-- <label for="email">Department:</label> -->
-			  <input  type="text" class="form-control" id="department" name="department" placeholder="Color">
+	<!-- <h3>Update cars informations</h3> -->
+		<form action="/admin_update" method="POST" enctype="multipart/form-data" id="contactForm">
+			{% for i in rows %}
+			<input class="form-control" type="hidden" value="{{i[0]}}" name="car_id"></td>
+			<div class="form-group">
+				<input  style="width: 100px" type="text" class="form-control" id="model" name="model" value="{{i[1]}}">
 			</div>
+	
+			<div class="form-group">
+				<input  style="width: 100px" type="text" class="form-control" id="color" name="color" value="{{i[2]}}">
+				</div>
+				
+			<div class="form-group">
+				<input  style="width: 100px" type="text" class="form-control" id="price" name="price" value="{{i[3]}}">
+				</div>
 			
-		  <div class="form-group">
-			  <!-- <label for="email">Username:</label> -->
-			  <input  type="text" class="form-control" id="username" name="username" placeholder="Price">
-			</div>
-		  
+				<div class="form-group">
+				<input  style="width: 100px" type="text" class="form-control" id="grade" name="grade" value="{{i[4]}}">
+				</div>
+			
 			<div class="form-group">
-			  <!-- <label for="email">Address:</label> -->
-			  <input  type="text" class="form-control" id="address" name="address" placeholder="Grade">
-			</div>
-		  
-		  <div class="form-group">
-			  <!-- <label for="email">Phone No:</label> -->
-			  <input  type="text" class="form-control" id="phone" name="phone" placeholder="Car Type">
-			</div>
-
-		<div class="form-group">
-				<!-- <label for="email">Phone No:</label> -->
-				<input  type="text" class="form-control" id="phone" name="phone" placeholder="Engine Power">
-			  </div>
-
-		<div class="form-group">
-				<!-- <label for="email">Phone No:</label> -->
-				<input  type="text" class="form-control" id="phone" name="phone" placeholder="Tax Price">
-			  </div>
-
+				<input  style="width: 100px" type="text" class="form-control" id="car_type" name="car_type" value="{{i[5]}}">
+				</div>
+	
 			<div class="form-group">
-			<!-- <label for="pwd">Password:</label> -->
-			<input type="file" id="myFile" name="filename">
-			<!-- <input type="password" type="password" class="form-control" id="password" name="password" placeholder="Password"> -->
-		  </div>  
-		<button class="" type="submit">Update Car Informations</button>
-		<br />  
-		<br />  
-		<br />  
-		<div id="details"></div>  
-	</div>
+					<input  style="width: 100px" type="text" class="form-control" id="engine_power" name="engine_power" value="{{i[6]}}">
+				</div>
+	
+			<div class="form-group">
+					<input  style="width: 100px" type="text" class="form-control" id="tax" name="tax" value="{{i[7]}}">
+				</div>
+			<input type="file" name="file">
+		
+			<br>
+			<button class="form-group" type="submit">Update</button>
+			<br/>  
+			{% endfor %}
+			
+			<div id="details"></div>  
+		</div>
+		</form>
+	
 </section> 
 {% endblock %}

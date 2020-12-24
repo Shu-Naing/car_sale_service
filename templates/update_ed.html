@@ -1,0 +1,83 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<section class="login_box_area p_120">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3"></div>
+				<div class="col-lg-6">
+					<form action="/admin_update" method="POST" enctype="multipart/form-data">
+						<div class="col-md-3">
+							<td><input class="form-control" type="hidden" value="{{row[0]}}" name="car_id"></td>
+							</div>
+							<table>
+								<tr>
+									<div class="col-md-3">
+										<td><label>Model</label></td>
+										</div>
+											<div class="col-md-3">
+													<td><input class="form-control" type="text" value="{{row[1]}}" name="model"></td>
+												</div>
+												</tr>
+												<br>
+												<tr>
+												<div class="col-md-3">
+													<td><label>Color</label></td>
+												</div>
+												
+												<div class="col-md-3">
+													<td><input class="form-control" type="text" value="{{row[2]}}" name="color"></td>
+												</div>
+												</tr>
+												<br>
+												<tr>
+												<div class="col-md-3">
+													<td><label>Price</label></td>
+												</div>
+												<div class="col-md-3">
+														<td><input class="form-control" type="text" value="{{row[3]}}" name="price"></td>
+												</div>
+												</tr>
+												<br>
+												<tr>
+												<div class="col-md-3">
+													<td><label>Grade</label></td>
+													</div>
+													<div class="col-md-3">
+															<td><input class="form-control" type="text" value="{{row[4]}}" name="grade"></td>
+														</div>
+													</tr>
+													<br>
+													<tr>
+													<div class="col-md-3">
+														<td><label>Car Type</label></td>
+														</div>
+														<div class="col-md-3">
+																<td><input class="form-control" type="text" value="{{row[5]}}" name="car_type"></td>
+															</div>
+													</tr>
+													<br>
+													<tr>
+													<div class="col-md-3">
+														<td><label>Engine Power</label></td>
+														</div>
+														<div class="col-md-3">
+																<td><input class="form-control" type="text" value="{{row[6]}}" name="engine_power"></td>
+															</div>
+													</tr>	
+													<tr>
+														<div class="col-md-3">
+															<td><label>Tax</label></td>
+															</div>
+															<div class="col-md-3">
+																	<td><input style="width: 567px" class="form-control" type="text" value="{{row[7]}}" name="tax_price"></td>
+																</div>
+													</tr>						
+													<tr><td><input class="btn btn-dark" type="submit" name="update"></td></tr>
+													</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

@@ -23,7 +23,6 @@ def admin_insert():
     if request.method == "GET":
         return render_template("admin_insert.html")
     else:
-        print("Hello")
         model = request.form['model']
         color = request.form['color']
         price = request.form['price']
@@ -31,27 +30,61 @@ def admin_insert():
         car_type = request.form['car_type']
         engine_power = request.form['engine_power']
         tax = request.form['tax']
-        img = request.files['img']
-        filename = img.filename
+        file = request.files['file']
+        filename = file.filename
         fpath = str("static/img/car_photos/"+filename)
-        img.save(fpath)
+        file.save(fpath)
         connection()
-        cur.execute("INSERT INTO car (model,color,price,grade,car_type,engine_power,tax_price,photo) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (model,color,price,grade,car_type,engine_power,tax,img))
+        cur.execute("INSERT INTO car (model,color,price,grade,car_type,engine_power,tax_price,photo) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (model,color,price,grade,car_type,engine_power,tax,fpath))
         con.commit()
         row = cur.fetchone()
-        return render_template("faq.html", row = row,)
+        return render_template("admin_insert.html", row = row,)
 
-@app.route('/admin_update', methods=['GET', 'POST'])
+@app.route('/view_update', methods=['GET', 'POST'])
+def view_update():
+    if request.method=="GET":
+        connection()
+        cur.execute("SELECT model FROM car")
+        rows = cur.fetchall()
+        return render_template("update_start.html",rows = rows)
+    else:
+        model = request.form['model']
+        connection()
+        cur.execute("SELECT * FROM car WHERE model LIKE %s",[model])
+        row = cur.fetchone()
+        return render_template("update_ed.html", row = row)
+
+@app.route("/admin_update",methods=["POST", "GET"])
 def admin_update():
-    # if request.method == "GET":
-        return render_template("admin_update.html")
-    # else:
+    if request.method == "POST":
+        car_id = request.form['car_id']
+        model = request.form['model']
+        color = request.form['color']
+        price = request.form['price']
+        grade = request.form['grade']
+        car_type = request.form['car_type']
+        engine_power = request.form['engine_power']
+        tax_price = request.form['tax_price']
+        connection()
+        cur.execute("update car set model = %s, color = %s, price = %s, grade = %s, car_type = %s, engine_power = %s, tax_price = %s where car_id = %s",(model,color,price,grade,car_type,engine_power,tax_price,car_id))
+        con.commit()
+        return redirect("/view_update")
+
 
 @app.route('/admin_delete', methods=['GET', 'POST'])
 def admin_delete():
-    # if request.method == "GET":
-        return render_template("admin_delete.html")
-    # else:
+    if request.method == "GET":
+        connection()
+        cur.execute("select model from car")
+        row = cur.fetchall()
+        return render_template("admin_delete.html", row = row)
+    else:
+        connection()
+        model = request.form['model']
+        cur.execute("delete from car where model=%s", [model])
+        con.commit()
+        return redirect("/admin_delete")
+
 
 
 @app.route("/login", methods=["POST","GET"])
@@ -93,10 +126,23 @@ def signup():
         row = cur.fetchone()
         return render_template("index.html", row = row,)
 
+@app.route('/cars', methods=['GET', 'POST'])
+def cars():
+     if request.method=="GET":
+        connection()
+        cur.execute("SELECT * FROM car")
+        row = cur.fetchall()
+        return render_template("cars.html",row = row)
+
 @app.route("/admin_logout")
 def admin_logout():
     if request.method== "GET":
         return redirect('/')
+
+@app.route("/update_list")
+def update_list():
+    if request.method== "GET":
+        return render_template("update_select.html")
 
 @app.route('/about', methods=['GET'])
 def about():
@@ -117,10 +163,6 @@ def terms():
 @app.route('/contact', methods=['GET'])
 def contact():
     return render_template("contact.html")
-
-@app.route('/cars', methods=['GET', 'POST'])
-def cars():
-    return render_template("cars.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
