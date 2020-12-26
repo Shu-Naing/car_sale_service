@@ -85,8 +85,6 @@ def admin_delete():
         con.commit()
         return redirect("/admin_delete")
 
-
-
 @app.route("/login", methods=["POST","GET"])
 def login():
     if request.method == "GET":
@@ -143,6 +141,15 @@ def admin_logout():
 def update_list():
     if request.method== "GET":
         return render_template("update_select.html")
+
+@app.route('/car_details', methods=['GET'])
+def car_details():
+    if request.method=="POST":
+        model = request.form['model']
+        connection()
+        cur.execute("SELECT * FROM car WHERE model ",[model])
+        row = cur.fetchall()
+        return render_template("car-details.html", row = row)
 
 @app.route('/about', methods=['GET'])
 def about():

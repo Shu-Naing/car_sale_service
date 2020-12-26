@@ -24,25 +24,25 @@
         <div class="container">
             <div class="row">
             {% for i in row %}
-                <div class="col-lg-4">
+                <div class="col-lg-4" name="{{i[0]}}">
                         <div class="trainer-item">
                                 <img src="{{i[8]}}" alt="">
                            
                             <div class="down-content">
                                 <span>
-                                    <del><sup>$</sup>{{i[3]}} </del> &nbsp; <sup>$</sup>{{i[3]}}
+                                    <sup>$</sup>{{i[3]}}
                                 </span>
 
                                 <h4>{{i[1]}}</h4>
 
                                 <p>
-                                    <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-dashboard"></i> {{i[6]}}km &nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-cube"></i> {{i[4]}} &nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-cog"></i> {{i[5]}} &nbsp;&nbsp;&nbsp;
                                 </p>
 
                                 <ul class="social-icons">
-                                    <li><a href="car-details.html">+ View Car</a></li>
+                                    <li><a id="model" name="model" href="/car_details">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
