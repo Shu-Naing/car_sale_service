@@ -5,12 +5,12 @@
     <div id="car_id"> 
       <section class="section section-bg" id="call-to-action" style="background-image: url(static/images/banner-image-1-1920x500.jpg)">
         <div class="container">
-            <div class="row" name="">
+            <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="cta-content">
                         <br>
                         <br>
-                        <h2><small><del>$12 999</del></small> <em>${{row.1}}</em></h2>
+                        <h2><em>{{rows[1]}}</em></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur.</p>
                     </div>
                 </div>
@@ -33,13 +33,13 @@
               </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img class="d-block w-100" src="{{row[8]}}" alt="First slide">
+                  <img class="d-block w-100" src="{{rows[8]}}" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="static/images/car-image-1-1200x600.jpg" alt="Second slide">
+                  <img class="d-block w-100" src="{{rows[8]}}" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block w-100" src="static/images/car-image-1-1200x600.jpg" alt="Third slide">
+                  <img class="d-block w-100" src="{{rows[8]}}" alt="Third slide">
                 </div>
               </div>
               <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -73,43 +73,43 @@
                        <div class="col-sm-6">
                             <label>Type</label>
                        
-                            <p>Used vehicle</p>
+                            <p>{{rows[5]}}</p>
                        </div>
 
-                       <div class="col-sm-6">
+                       <!-- <div class="col-sm-6">
                             <label>Make</label>
                        
                             <p>Lorem ipsum dolor sit</p>
-                       </div>
+                       </div> -->
 
                        <div class="col-sm-6">
                             <label> Model</label>
                        
-                            <p>Lorem ipsum dolor sit</p>
+                            <p>{{rows[1]}}</p>
                        </div>
 
                        <div class="col-sm-6">
-                            <label>First registration</label>
+                            <label>Price</label>
                        
-                            <p>05/2010</p>
+                            <p>${{rows[3]}}</p>
                        </div>
 
                        <div class="col-sm-6">
-                            <label>Mileage</label>
+                            <label>Grade</label>
                        
-                            <p>5000 km</p>
+                            <p>{{rows[4]}}</p>
                        </div>
 
                        <div class="col-sm-6">
-                            <label>Fuel</label>
+                            <label>Tax Price</label>
                        
-                            <p>Diesel</p>
+                            <p>{{rows[7]}}</p>
                        </div>
 
                        <div class="col-sm-6">
-                            <label>Engine size</label>
+                            <label>Engine Power</label>
                        
-                            <p>1800 cc</p>
+                            <p>{{rows[6]}} cc</p>
                        </div>
 
                        <div class="col-sm-6">
@@ -119,28 +119,28 @@
                        </div>
 
 
-                       <div class="col-sm-6">
+                       <!-- <div class="col-sm-6">
                             <label>Gearbox</label>
                        
                             <p>Manual</p>
-                       </div>
+                       </div> -->
 
-                       <div class="col-sm-6">
+                       <!-- <div class="col-sm-6">
                             <label>Number of seats</label>
                        
                             <p>4</p>
-                       </div>
+                       </div> -->
 
-                       <div class="col-sm-6">
+                       <!-- <div class="col-sm-6">
                             <label>Doors</label>
                        
                             <p>2/3</p>
-                       </div>
+                       </div> -->
 
                        <div class="col-sm-6">
                             <label>Color</label>
                        
-                            <p>Black</p>
+                            <p>{{rows[2]}}</p>
                        </div>
                     </div>
                   </article>

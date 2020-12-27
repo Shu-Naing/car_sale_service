@@ -124,14 +124,6 @@ def signup():
         row = cur.fetchone()
         return render_template("index.html", row = row,)
 
-@app.route('/cars', methods=['GET', 'POST'])
-def cars():
-     if request.method=="GET":
-        connection()
-        cur.execute("SELECT * FROM car")
-        row = cur.fetchall()
-        return render_template("cars.html",row = row)
-
 @app.route("/admin_logout")
 def admin_logout():
     if request.method== "GET":
@@ -142,14 +134,42 @@ def update_list():
     if request.method== "GET":
         return render_template("update_select.html")
 
-@app.route('/car_details', methods=['GET'])
-def car_details():
-    if request.method=="POST":
-        model = request.form['model']
+@app.route('/cars', methods=['GET', 'POST'])
+def cars():
+     if request.method=="GET":
         connection()
-        cur.execute("SELECT * FROM car WHERE model ",[model])
+        cur.execute("SELECT * FROM car")
+        row = cur.fetchall()
+        return render_template("cars.html",row = row)
+
+@app.route('/car_details', methods=['GET', 'POST'])
+def car_details():
+    if request.method=="GET":
+        connection()
+        cur.execute("SELECT model FROM car ")
         row = cur.fetchall()
         return render_template("car-details.html", row = row)
+    else:
+        model = request.form['model']
+        connection()
+        cur.execute("SELECT * FROM car WHERE model LIKE %s",[model])
+        rows = cur.fetchone()
+        return render_template("car-details.html",rows = rows)
+    
+
+# @app.route('/view_update', methods=['GET', 'POST'])
+# def view_update():
+#     if request.method=="GET":
+#         connection()
+#         cur.execute("SELECT model FROM car")
+#         rows = cur.fetchall()
+#         return render_template("update_start.html",rows = rows)
+#     else:
+#         model = request.form['model']
+#         connection()
+#         cur.execute("SELECT * FROM car WHERE model LIKE %s",[model])
+#         row = cur.fetchone()
+#         return render_template("update_ed.html", row = row)
 
 @app.route('/about', methods=['GET'])
 def about():

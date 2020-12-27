@@ -20,12 +20,13 @@
     <!-- ***** Call to Action End ***** -->
 
     <!-- ***** Fleet Starts ***** -->
-    <section class="section" id="trainers">
+    <section class="section" id="trainers" action="/car_details" method="POST">
         <div class="container">
-            <div class="row">
+            <div class="row" >
             {% for i in row %}
                 <div class="col-lg-4" name="{{i[0]}}">
-                        <div class="trainer-item">
+                        <form action="/car_details" method="POST">
+                            <div class="trainer-item">
                                 <img src="{{i[8]}}" alt="">
                            
                             <div class="down-content">
@@ -41,11 +42,13 @@
                                     <i class="fa fa-cog"></i> {{i[5]}} &nbsp;&nbsp;&nbsp;
                                 </p>
 
-                                <ul class="social-icons">
-                                    <li><a id="model" name="model" href="/car_details">+ View Car</a></li>
-                                </ul>
+                                <!-- <ul class="social-icons" action="/car_details" method="POST">
+                                    <li><a id="model"name="model" href="/car_details">+ View Car</a></li>
+                                </ul> -->
+                                <button type="submit" class="trainer-item" id="model" name="model" value="{{i[1]}}">{{i[1]}}</button>
                             </div>
                         </div>
+                        </form>
                 </div> 
                 {% endfor %}
             </div>
