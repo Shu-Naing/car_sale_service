@@ -156,20 +156,35 @@ def car_details():
         rows = cur.fetchone()
         return render_template("car-details.html",rows = rows)
     
+@app.route('/sales_view', methods=['GET', 'POST'])
+def sales_view():
+    if request.method=="GET":
+        connection()
+        cur.execute("SELECT model FROM car")
+        rows = cur.fetchall()
+        return render_template("sales-select.html",rows = rows)
+    else:
+        model = request.form['model']
+        connection()
+        cur.execute("SELECT * FROM car WHERE model LIKE %s",[model])
+        row = cur.fetchone()
+        return render_template("sales.html", row = row)
 
-# @app.route('/view_update', methods=['GET', 'POST'])
-# def view_update():
-#     if request.method=="GET":
-#         connection()
-#         cur.execute("SELECT model FROM car")
-#         rows = cur.fetchall()
-#         return render_template("update_start.html",rows = rows)
-#     else:
+# @app.route("/admin_update",methods=["POST", "GET"])
+# def admin_update():
+#     if request.method == "POST":
+#         car_id = request.form['car_id']
 #         model = request.form['model']
+#         color = request.form['color']
+#         price = request.form['price']
+#         grade = request.form['grade']
+#         car_type = request.form['car_type']
+#         engine_power = request.form['engine_power']
+#         tax_price = request.form['tax_price']
 #         connection()
-#         cur.execute("SELECT * FROM car WHERE model LIKE %s",[model])
-#         row = cur.fetchone()
-#         return render_template("update_ed.html", row = row)
+#         cur.execute("update car set model = %s, color = %s, price = %s, grade = %s, car_type = %s, engine_power = %s, tax_price = %s where car_id = %s",(model,color,price,grade,car_type,engine_power,tax_price,car_id))
+#         con.commit()
+#         return redirect("/view_update")
 
 @app.route('/sales', methods=['GET'])
 def sales():
