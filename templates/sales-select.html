@@ -10,15 +10,16 @@
             <div class="col-md-3 form-group"></div>
             <div class="col-md-6 form-group">
 		             <h2>Sales Your Car</h2>
-	               <!-- <select name="menu_name"> -->
-                   <!-- <option>Choose Menu Name</option> -->
+	               <select >
+                   <option>Choose Menu Name</option>
 		                  {% for i in rows %}
-                               <!-- <option class="form-control" id="model" name="model" value="{{i[0]}}">{{i[0]}}</option> -->
+                               <option class="form-control" id="model" name="model" value="{{i[0]}}">{{i[0]}}</option>
                                <!-- <input  style="width: 100px" type="text" class="form-control" id="model" name="model" value="{{i[0]}}"> -->
-                               <button class="form-group" type="submit"  class="form-control" id="model" name="model" value="{{i[0]}}">{{i[0]}}</button>
+                               <!-- <button class="form-group" type="submit"  class="form-control" id="model" name="model" value="{{i[0]}}">{{i[0]}}</button> -->
 		                  {% endfor %}
-	                <!-- </select><br><br> -->
-	                    <!-- <input type="submit" value="Edit"> -->
+	                </select><br><br>
+	                    <input type="submit" value="Full Paid">
+	                    <input type="submit" value="Half Paid">
                   </div>
                 <div class="col-md-3 form-group"></div>
                 </form>
