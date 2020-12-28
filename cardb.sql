@@ -16,32 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `booking`
---
-
-DROP TABLE IF EXISTS `booking`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `booking` (
-  `booking_id` varchar(15) NOT NULL,
-  `booking_date` varchar(50) DEFAULT NULL,
-  `cl_id` varchar(10) DEFAULT NULL,
-  `emp_id` varchar(10) DEFAULT NULL,
-  `car_id` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`booking_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `booking`
---
-
-LOCK TABLES `booking` WRITE;
-/*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-/*!40000 ALTER TABLE `booking` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `branch`
 --
 
@@ -83,8 +57,10 @@ CREATE TABLE `car` (
   `engine_power` varchar(100) DEFAULT NULL,
   `tax_price` int DEFAULT NULL,
   `photo` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`car_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `sup_id` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`car_id`),
+  KEY `sup_id` (`car_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +69,7 @@ CREATE TABLE `car` (
 
 LOCK TABLES `car` WRITE;
 /*!40000 ALTER TABLE `car` DISABLE KEYS */;
+INSERT INTO `car` VALUES (7,'asf','asdf',34,'sdaf','sdf','ewef',34,'static/img/car_photos/contact-1-720x480.jpg',NULL),(8,'12','12',1200,'1212','12','12',12,'static/img/car_photos/product-4-720x480.jpg',NULL),(9,'asdf','sadf',12,'asdf','asf','12',123,'static/img/car_photos/bg-01.jpg',NULL),(10,'re','asdf',123,'asdf','sf','sdfa',123,'static/img/car_photos/blog-image-fullscren-1-1920x700.jpg',NULL),(11,'asdf','asfd',23423,'sadf','asdf','asd',2344,'static/img/car_photos/blog-image-fullscren-1-1920x700.jpg',NULL),(12,'asdf','asdf',2133,'sadf','asdf','sadf',123,'static/img/car_photos/contact-1-720x480.jpg',NULL),(13,'new','newcolor',129,'asdfa','safa','123',34,'static/img/car_photos/product-6-720x480.jpg',NULL),(14,'BMW-200','Blue',5000,'A','Sport','200',300,'static/img/car_photos/product-1-720x480.jpg',NULL);
 /*!40000 ALTER TABLE `car` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,10 +161,12 @@ DROP TABLE IF EXISTS `sales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sales` (
-  `sale_id` varchar(15) NOT NULL,
+  `sale_id` int NOT NULL AUTO_INCREMENT,
   `sale_date` varchar(20) DEFAULT NULL,
-  `order_id` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`sale_id`)
+  `car_id` int DEFAULT NULL,
+  PRIMARY KEY (`sale_id`),
+  KEY `car_id_idx` (`car_id`),
+  CONSTRAINT `car_id` FOREIGN KEY (`car_id`) REFERENCES `sales` (`sale_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,7 +187,7 @@ DROP TABLE IF EXISTS `supplier`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `supplier` (
-  `sup_id` varchar(10) NOT NULL,
+  `sup_id` int NOT NULL AUTO_INCREMENT,
   `sup_name` varchar(30) DEFAULT NULL,
   `sup_address` varchar(100) DEFAULT NULL,
   `sup_phone` varchar(20) DEFAULT NULL,
@@ -234,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-12 11:40:10
+-- Dump completed on 2020-12-28 14:38:51

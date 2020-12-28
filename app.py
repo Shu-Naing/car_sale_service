@@ -171,6 +171,10 @@ def car_details():
 #         row = cur.fetchone()
 #         return render_template("update_ed.html", row = row)
 
+@app.route('/sales', methods=['GET'])
+def sales():
+    return render_template("sales.html")
+
 @app.route('/about', methods=['GET'])
 def about():
     return render_template("about.html")
