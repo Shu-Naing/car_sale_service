@@ -6,11 +6,11 @@
     <div class="row">
       <div class="col-lg-3"></div>
         <div class="col-lg-6">
-          <form action="/view_update" method="POST">
+          <form action="/sales_view" method="POST">
             <div class="col-md-3 form-group"></div>
             <div class="col-md-6 form-group">
 		             <h2>Sales Your Car</h2>
-	               <select >
+	               <select name="car_model">
                    <option>Choose Menu Name</option>
 		                  {% for i in rows %}
                                <option class="form-control" id="model" name="model" value="{{i[0]}}">{{i[0]}}</option>
@@ -18,8 +18,14 @@
                                <!-- <button class="form-group" type="submit"  class="form-control" id="model" name="model" value="{{i[0]}}">{{i[0]}}</button> -->
 		                  {% endfor %}
 	                </select><br><br>
-	                    <input type="submit" value="Full Paid">
-	                    <input type="submit" value="Half Paid">
+	                    <div class="form-group">
+                        <label for="payment">Payment Type:</label>
+                        <select class="form-control" id="payment" name="payment">
+                          <option>Half Paid</option>
+                          <option>Full Paid</option>
+                        </select>
+                      </div>
+                <input type="submit">
                   </div>
                 <div class="col-md-3 form-group"></div>
                 </form>

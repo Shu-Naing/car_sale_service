@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, session
 import mysql.connector as mysql
 import os
 import random
+from datetime import datetime
 
 def connection():
     global con, cur
@@ -164,11 +165,19 @@ def sales_view():
         rows = cur.fetchall()
         return render_template("sales-select.html",rows = rows)
     else:
-        model = request.form['model']
+        car_model = request.form['car_model']
+        payment = request.form['payment']
+        if payment == "Half Paid":
+            payment = False
+        else:
+            payment = True
         connection()
-        cur.execute("SELECT * FROM car WHERE model LIKE %s",[model])
-        row = cur.fetchone()
-        return render_template("sales.html", row = row)
+        cur.execute("SELECT car_id from car where model LIKE %s", [car_model])
+        car_id = cur.fetchone()[0]
+        sale_date = datetime.now()
+        cur.execute("INSERT into sales (sale_date, car_id, payment_option) values(%s,%s,%s)",[sale_date, car_id, payment])
+        con.commit()
+        return render_template("login.html")
 
 # @app.route("/admin_update",methods=["POST", "GET"])
 # def admin_update():
