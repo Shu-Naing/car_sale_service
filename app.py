@@ -179,22 +179,6 @@ def sales_view():
         con.commit()
         return render_template("login.html")
 
-# @app.route("/admin_update",methods=["POST", "GET"])
-# def admin_update():
-#     if request.method == "POST":
-#         car_id = request.form['car_id']
-#         model = request.form['model']
-#         color = request.form['color']
-#         price = request.form['price']
-#         grade = request.form['grade']
-#         car_type = request.form['car_type']
-#         engine_power = request.form['engine_power']
-#         tax_price = request.form['tax_price']
-#         connection()
-#         cur.execute("update car set model = %s, color = %s, price = %s, grade = %s, car_type = %s, engine_power = %s, tax_price = %s where car_id = %s",(model,color,price,grade,car_type,engine_power,tax_price,car_id))
-#         con.commit()
-#         return redirect("/view_update")
-
 @app.route('/sales', methods=['GET'])
 def sales():
     return render_template("sales.html")
