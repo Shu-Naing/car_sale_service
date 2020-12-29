@@ -1,0 +1,39 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+
+<!--================Single Product Area =================-->
+<div ></div>
+<div class="product_image_area">
+  <div class="container">
+    <h2>You searched: {{search}}</h2>
+    <section class="section" id="trainers" action="/search" method="POST">
+      <div class="container">
+          <div class="row" >
+              <div class="col-lg-4" >
+                          <div class="trainer-item">
+                              <img style="width: 567px" src="{{row[8]}}" alt="">
+                         
+                          <div class="down-content">
+                              <span>
+                                  <sup>$</sup>{{row[3]}}
+                              </span>
+
+                              <h4>{{row[1]}}</h4>
+
+                              <p>
+                                  <i class="fa fa-dashboard"></i> {{row[6]}}km &nbsp;&nbsp;&nbsp;
+                                  <i class="fa fa-cube"></i> {{row[4]}} &nbsp;&nbsp;&nbsp;
+                                  <i class="fa fa-cog"></i> {{row[5]}} &nbsp;&nbsp;&nbsp;
+                              </p>
+                              <button >{{row[1]}}</button>
+                          </div>
+                      </div>
+              </div> 
+          </div>
+      </div>
+  </section>
+  </div>
+</div>
+
+
+{% endblock %}

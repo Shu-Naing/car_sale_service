@@ -177,7 +177,20 @@ def sales_view():
         sale_date = datetime.now()
         cur.execute("INSERT into sales (sale_date, car_id, payment_option) values(%s,%s,%s)",[sale_date, car_id, payment])
         con.commit()
-        return render_template("login.html")
+        return redirect('/sales_view')
+
+@app.route("/search",methods=["POST","GET"])
+def search():
+    if request.method=="POST":
+        search = request.form["search"]
+        connection()
+        cur.execute("select * from car where model = %s",[search])
+        row = cur.fetchone()
+        if not row:
+            return render_template("nosearch.html", search = search)
+        else:
+            return render_template("search.html", search = search, row = row)
+
 
 @app.route('/sales', methods=['GET'])
 def sales():
